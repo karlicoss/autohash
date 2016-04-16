@@ -1,7 +1,21 @@
 ext.versions = [
-    junit : '4.12',
+    jetbrainsAnnotations : '15.0',
+
+    autoValue            : '1.2',
+    autoService          : '1.0-rc2',
+    javapoet             : '1.6.1',
+
+    // test dependencies
+    junit                : '4.12',
 ]
 
 ext.libraries = [
-    junit: 'junit:junit:' + versions.junit,
+    jetbrainsAnnotations : 'org.jetbrains:annotations:' + versions.jetbrainsAnnotations,
+
+    autoValue            : 'com.google.auto.value:auto-value:' + versions.autoValue,
+    autoService          : 'com.google.auto.service:auto-service:' + versions.autoService,
+    javapoet             : 'com.squareup:javapoet:' + versions.javapoet,
+
+    // test dependencies
+    junit                : 'junit:junit:' + versions.junit,
 ]

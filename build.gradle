@@ -1,9 +1,8 @@
+apply plugin: 'java'
 apply from: 'dependencies.gradle'
 
-group 'org.karlicoss'
+group 'com.karlicoss.auto.value.hash'
 version '1.0-SNAPSHOT'
-
-apply plugin: 'java'
 
 sourceCompatibility = JavaVersion.VERSION_1_7
 targetCompatibility = JavaVersion.VERSION_1_7
@@ -13,5 +12,11 @@ repositories {
 }
 
 dependencies {
+    compile libraries.jetbrainsAnnotations
+
+    compile libraries.autoValue
+    compile libraries.autoService
+    compile libraries.javapoet
+
     testCompile libraries.junit
 }
