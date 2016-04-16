@@ -1,0 +1,7 @@
+ext.versions = [
+    junit : '4.12',
+]
+
+ext.libraries = [
+    junit: 'junit:junit:' + versions.junit,
+]

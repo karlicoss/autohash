@@ -1,0 +1,17 @@
+apply from: 'dependencies.gradle'
+
+group 'org.karlicoss'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile libraries.junit
+}
