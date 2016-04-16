@@ -24,3 +24,17 @@ dependencies {
     // we need 'tools.jar' (which is a part of JDK) to test annotations processor
     testCompile files(org.gradle.internal.jvm.Jvm.current().getToolsJar())
 }
+
+
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
+tasks.withType(Test) {
+    testLogging {
+        events TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED
+        exceptionFormat TestExceptionFormat.FULL
+        showCauses true
+        showExceptions true
+        showStackTraces true
+    }
+}
