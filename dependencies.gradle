@@ -7,6 +7,8 @@ ext.versions = [
 
     // test dependencies
     junit                : '4.12',
+    googleCompileTesting : '0.9',
+    googleTruth          : '0.28',
 ]
 
 ext.libraries = [
@@ -18,4 +20,6 @@ ext.libraries = [
 
     // test dependencies
     junit                : 'junit:junit:' + versions.junit,
+    googleCompileTesting : 'com.google.testing.compile:compile-testing:' + versions.googleCompileTesting,
+    googleTruth          : 'com.google.truth:truth:' + versions.googleTruth,
 ]
