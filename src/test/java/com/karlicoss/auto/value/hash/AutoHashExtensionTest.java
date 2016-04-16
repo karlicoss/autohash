@@ -24,4 +24,17 @@ public class AutoHashExtensionTest {
                 .and()
                 .generatesSources(output);
     }
+
+    @Test
+    public void processesAutoHashAnnotatedClass() {
+        JavaFileObject input = JavaFileObjects.forResource("input/Annotated.java");
+        JavaFileObject output = JavaFileObjects.forResource("output/Annotated.java");
+
+        assertAbout(javaSources())
+                .that(singletonList(input))
+                .processedWith(new AutoValueProcessor())
+                .compilesWithoutError()
+                .and()
+                .generatesSources(output);
+    }
 }
