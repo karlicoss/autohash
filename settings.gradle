@@ -1,2 +1,3 @@
-rootProject.name = 'autohash'
+rootProject.name = 'autohash-root'
 
+include ':autohash'

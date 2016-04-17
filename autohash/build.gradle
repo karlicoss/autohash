@@ -1,0 +1,38 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+
+    dependencies {
+        classpath "gradle.plugin.me.champeau.gradle:jmh-gradle-plugin:0.3.0"
+    }
+}
+
+plugins {
+    id 'java'
+    id 'idea'
+    id 'me.champeau.gradle.jmh' version '0.3.0' // TODO extract version
+    // TODO jmh version
+}
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
+
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+
+
+dependencies {
+    compile libraries.jetbrainsAnnotations
+
+    compile libraries.autoValue
+    compile libraries.autoService
+    compile libraries.javapoet
+
+    testCompile libraries.junit
+    testCompile libraries.googleCompileTesting
+    testCompile libraries.googleTruth
+    testCompile libraries.commonsLang
+    // we need 'tools.jar' (which is a part of JDK) to test annotations processor
+    testCompile files(org.gradle.internal.jvm.Jvm.current().getToolsJar())
+}

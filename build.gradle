@@ -1,110 +1,26 @@
-buildscript {
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
+apply from: 'dependencies.gradle'
+
+subprojects { project ->
     repositories {
         jcenter()
     }
 
-    dependencies {
-        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
-    }
-}
-
-apply plugin: 'java'
-apply from: 'dependencies.gradle'
-
-sourceCompatibility = JavaVersion.VERSION_1_7
-targetCompatibility = JavaVersion.VERSION_1_7
-
-
-
-repositories {
-    jcenter()
-}
-
-sourceSets {
-    perf {
-        compileClasspath += sourceSets.main.output
-    }
-}
-
-configurations {
-    perfCompile.extendsFrom compile
-}
-
-dependencies {
-    compile libraries.jetbrainsAnnotations
-
-    compile libraries.autoValue
-    compile libraries.autoService
-    compile libraries.javapoet
-
-//    perfCompile 'com.google.auto.value:auto-value:1.2'
-    perfCompile "org.openjdk.jmh:jmh-core:1.12"
-    perfCompile 'org.openjdk.jmh:jmh-generator-annprocess:1.12'
-
-    testCompile libraries.junit
-    testCompile libraries.googleCompileTesting
-    testCompile libraries.googleTruth
-    testCompile libraries.commonsLang
-    // we need 'tools.jar' (which is a part of JDK) to test annotations processor
-    testCompile files(org.gradle.internal.jvm.Jvm.current().getToolsJar())
-}
-
-//println(configurations)
-
-//subprojects {
-
-    apply plugin: 'idea'
-    idea {
-        module {
-//            println(scopes)
-
-//            scopes.PROVIDED.plus += configurations.perfCompile
-//            scopes.PROVIDED.minus += configurations.getByName(compile)
-        }
-    }
-//}
-
-
-// thanks to https://github.com/gvsmirnov/jmh-gradle-sample for the benchmarking setup sample
-task perfJar(type: Jar, dependsOn: perfClasses) {
-    from sourceSets.perf.output + sourceSets.main.output
-}
-
-
-task benchmarks(dependsOn: perfJar) {
-    apply plugin: 'com.github.johnrengelman.shadow'
-
-    shadowJar {
-        classifier = "benchmarks"
-
-        from sourceSets.perf.output
-        from sourceSets.main.output
-        from project.configurations.perfRuntime
-
-
-        manifest {
-            attributes "Main-Class": "org.openjdk.jmh.Main"
+    buildscript {
+        repositories {
+            jcenter()
         }
     }
 
-    doLast {
-        shadowJar.execute()
-    }
-
-}
-
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import org.gradle.api.tasks.testing.logging.TestLogEvent
-
-tasks.withType(Test) {
-    testLogging {
-        events TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED
-        exceptionFormat TestExceptionFormat.FULL
-        showCauses true
-        showExceptions true
-        showStackTraces true
+    tasks.withType(Test) {
+        testLogging {
+            events TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED
+            exceptionFormat TestExceptionFormat.FULL
+            showCauses true
+            showExceptions true
+            showStackTraces true
+        }
     }
 }
-
-
-apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
