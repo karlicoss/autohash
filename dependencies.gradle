@@ -9,6 +9,7 @@ ext.versions = [
     junit                : '4.12',
     googleCompileTesting : '0.9',
     googleTruth          : '0.28',
+    commonsLang          : '3.4',
 ]
 
 ext.libraries = [
@@ -22,4 +23,5 @@ ext.libraries = [
     junit                : 'junit:junit:' + versions.junit,
     googleCompileTesting : 'com.google.testing.compile:compile-testing:' + versions.googleCompileTesting,
     googleTruth          : 'com.google.truth:truth:' + versions.googleTruth,
+    commonsLang          : 'org.apache.commons:commons-lang3:' + versions.commonsLang,
 ]

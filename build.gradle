@@ -21,6 +21,7 @@ dependencies {
     testCompile libraries.junit
     testCompile libraries.googleCompileTesting
     testCompile libraries.googleTruth
+    testCompile libraries.commonsLang
     // we need 'tools.jar' (which is a part of JDK) to test annotations processor
     testCompile files(org.gradle.internal.jvm.Jvm.current().getToolsJar())
 }
