@@ -1,4 +1,4 @@
-package benchmarks;
+package benchmarks.data;
 
 import com.google.auto.value.AutoValue;
 import com.karlicoss.auto.value.hash.AutoHash;

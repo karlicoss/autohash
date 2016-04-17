@@ -1,13 +1,18 @@
 package benchmarks;
 
+import benchmarks.data.Cached;
+import benchmarks.data.NotCached;
 import javafx.util.Pair;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Fork;
+import org.openjdk.jmh.annotations.Level;
 import org.openjdk.jmh.annotations.Measurement;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
+import org.openjdk.jmh.annotations.Param;
 import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.Warmup;
 import org.openjdk.jmh.infra.Blackhole;
@@ -21,22 +26,22 @@ import java.util.concurrent.TimeUnit;
 import static java.lang.String.valueOf;
 
 
-@Warmup(iterations=10)
+@Warmup(iterations=5)
 @Measurement(iterations=10)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
-@Fork(10)
+@Fork(5)
 public class TestBenchmark {
 
     @State(Scope.Thread)
     public static class MyState {
-        public static class Single {
+        static class Input {
             public final String accountId;
             public final List<Integer> messageIds;
             public final List<Pair<String, String>> users;
-            public Single(Random random) {
-                int length1 = random.nextInt(10);
-                int length2 = random.nextInt(10);
+            public Input(Random random) {
+                int length1 = 5 + random.nextInt(5);
+                int length2 = 5 + random.nextInt(5);
                 accountId = String.valueOf(random.nextLong());
                 messageIds = new ArrayList<>(length1);
                 for (int i = 0; i < length1; i++) {
@@ -51,75 +56,101 @@ public class TestBenchmark {
         }
 
 
-        public final List<Single> singles;
+        private final List<Input> inputs;
         {
             Random random = new Random(123413);
-            singles = new ArrayList<>(100);
-            for (int i = 0; i < 100; i++) {
-                singles.add(new Single(random));
-            }
-        }
-        public final List<Cached> cacheds = new ArrayList<>(singles.size());
-        {
-            for (MyState.Single single : singles) {
-                cacheds.add(Cached.create(single.accountId, single.messageIds, single.users));
-            }
-        }
-        public final List<NotCached> notCacheds = new ArrayList<>(singles.size());
-        {
-            for (MyState.Single single : singles) {
-                notCacheds.add(NotCached.create(single.accountId, single.messageIds, single.users));
+            int count = 1;
+            inputs = new ArrayList<>(count);
+            for (int i = 0; i < count; i++) {
+                inputs.add(new Input(random));
             }
         }
 
+        @Param({"true", "false"})
+        public boolean cachingOn;
 
+        public List<Object> items;
+
+        @Setup(Level.Invocation)
+        public void setup() {
+            items = new ArrayList<>(inputs.size());
+            for (Input input : inputs) {
+                final Object item;
+                if (cachingOn) {
+                    item = Cached.create(input.accountId, input.messageIds, input.users);
+                } else {
+                    item = NotCached.create(input.accountId, input.messageIds, input.users);
+                }
+                items.add(item);
+            }
+        }
+    }
+
+    /*
+        Just a sanity check to avoid any additional overhead.
+        Results should be roughly the same, cached version will be slightly slower.
+     */
+    @Benchmark
+    public void combineHashCodes(MyState state, Blackhole hole) {
+        final List<Object> items = state.items;
+
+        int combined = 0;
+        for (Object item : items) {
+            combined ^= item.hashCode();
+        }
+        hole.consume(combined);
     }
 
     @Benchmark
-    public void cached(MyState state, Blackhole hole) {
-        List<Cached> items = state.cacheds;
-        HashSet<Cached> set = new HashSet<>();
-        for (Cached cached : items) {
-            set.add(cached);
-        }
-        HashSet<Cached> set2 = new HashSet<>();
-        for (Cached cached : items) {
-            set2.add(cached);
-        }
+    public void getFromSmallHashSet(MyState state, Blackhole hole) {
+        final List<Object> items = state.items;
 
-        HashSet<Cached> set3 = new HashSet<>(set);
-        set3.addAll(set2);
+        HashSet<Object> set = new HashSet<>(items);
+        // add few items to prevent check for empty map
+        set.add(new Object());
+        set.add(4);
 
-        boolean res = true;
-        for (Cached item : set3) {
-            res &= set.contains(item);
-            res &= set2.contains(item);
+        boolean result = true;
+        for (Object item: items) {
+            result &= set.contains(item);
         }
-        hole.consume(res);
+        hole.consume(result);
     }
 
 
     @Benchmark
-    public void notCached(MyState state, Blackhole hole) {
-        List<NotCached> items = state.notCacheds;
-        HashSet<NotCached> set = new HashSet<>();
-        for (NotCached notCached : items) {
-            set.add(notCached);
-        }
-        HashSet<NotCached> set2 = new HashSet<>();
-        for (NotCached cached : items) {
-            set2.add(cached);
-        }
+    public void putInHashSet(MyState state, Blackhole hole) {
+        final List<Object> items = state.items;
 
-        HashSet<NotCached> set3 = new HashSet<>(set);
-        set3.addAll(set2);
-
-        boolean res = true;
-        for (NotCached item : set3) {
-            res &= set.contains(item);
-            res &= set2.contains(item);
-        }
-        hole.consume(res);
+        HashSet<Object> set = new HashSet<>(items);
+        hole.consume(set);
     }
 
+    @Benchmark
+    public void putInHashSetAndQuery(MyState state, Blackhole hole) {
+        final List<Object> items = state.items;
+
+        HashSet<Object> set = new HashSet<>(items);
+
+        boolean result = true;
+        for (Object item: items) {
+            result &= set.contains(item);
+        }
+        hole.consume(result);
+    }
+
+    @Benchmark
+    public void putInHashSetAndQueryThreeTimes(MyState state, Blackhole hole) {
+        final List<Object> items = state.items;
+
+        HashSet<Object> set = new HashSet<>(items);
+
+        boolean result = true;
+        for (int i = 0; i < 3; i++) {
+            for (Object item: items) {
+                result &= set.contains(item);
+            }
+        }
+        hole.consume(result);
+    }
 }
