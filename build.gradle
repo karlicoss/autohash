@@ -1,12 +1,29 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
+    }
+}
+
 apply plugin: 'java'
 apply from: 'dependencies.gradle'
 
 sourceCompatibility = JavaVersion.VERSION_1_7
 targetCompatibility = JavaVersion.VERSION_1_7
 
+
+
 repositories {
-    mavenCentral()
+    jcenter()
 }
+
+sourceSets {
+    perf
+}
+
 
 dependencies {
     compile libraries.jetbrainsAnnotations
@@ -14,6 +31,9 @@ dependencies {
     compile libraries.autoValue
     compile libraries.autoService
     compile libraries.javapoet
+
+    perfCompile "org.openjdk.jmh:jmh-core:1.12"
+    perfCompile 'org.openjdk.jmh:jmh-generator-annprocess:1.12'
 
     testCompile libraries.junit
     testCompile libraries.googleCompileTesting
@@ -23,6 +43,33 @@ dependencies {
     testCompile files(org.gradle.internal.jvm.Jvm.current().getToolsJar())
 }
 
+
+task perfJar(type: Jar, dependsOn: perfClasses) {
+    from sourceSets.perf.output + sourceSets.main.output
+}
+
+
+task benchmarks(dependsOn: perfJar) {
+    apply plugin: 'com.github.johnrengelman.shadow'
+
+    shadowJar {
+        classifier = "benchmarks"
+
+        from sourceSets.perf.output
+        from sourceSets.main.output
+        from project.configurations.perfRuntime
+
+
+        manifest {
+            attributes "Main-Class": "org.openjdk.jmh.Main"
+        }
+    }
+
+    doLast {
+        shadowJar.execute()
+    }
+
+}
 
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
