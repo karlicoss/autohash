@@ -1,9 +1,6 @@
 apply plugin: 'java'
 apply from: 'dependencies.gradle'
 
-group 'com.karlicoss.auto.value.hash'
-version '1.0-SNAPSHOT'
-
 sourceCompatibility = JavaVersion.VERSION_1_7
 targetCompatibility = JavaVersion.VERSION_1_7
 
@@ -39,3 +36,6 @@ tasks.withType(Test) {
         showStackTraces true
     }
 }
+
+
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
