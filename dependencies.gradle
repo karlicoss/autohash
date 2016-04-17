@@ -10,6 +10,9 @@ ext.versions = [
     googleCompileTesting : '0.9',
     googleTruth          : '0.28',
     commonsLang          : '3.4',
+
+    // profiling dependencies
+    jmh                  : '1.12',
 ]
 
 ext.libraries = [
