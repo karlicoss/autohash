@@ -21,9 +21,14 @@ repositories {
 }
 
 sourceSets {
-    perf
+    perf {
+        compileClasspath += sourceSets.main.output
+    }
 }
 
+configurations {
+    perfCompile.extendsFrom compile
+}
 
 dependencies {
     compile libraries.jetbrainsAnnotations
@@ -32,8 +37,7 @@ dependencies {
     compile libraries.autoService
     compile libraries.javapoet
 
-    perfCompile 'com.google.auto.value:auto-value:1.2'
-    perfCompile project
+//    perfCompile 'com.google.auto.value:auto-value:1.2'
     perfCompile "org.openjdk.jmh:jmh-core:1.12"
     perfCompile 'org.openjdk.jmh:jmh-generator-annprocess:1.12'
 
@@ -45,12 +49,19 @@ dependencies {
     testCompile files(org.gradle.internal.jvm.Jvm.current().getToolsJar())
 }
 
-//apply plugin: 'idea'
-//idea {
-//    module {
-//        scopes.PROVIDED.plus  += configurations.perfCompile
-//        scopes.PROVIDED.minus += configurations.compile
-//    }
+//println(configurations)
+
+//subprojects {
+
+    apply plugin: 'idea'
+    idea {
+        module {
+//            println(scopes)
+
+//            scopes.PROVIDED.plus += configurations.perfCompile
+//            scopes.PROVIDED.minus += configurations.getByName(compile)
+        }
+    }
 //}
 
 
