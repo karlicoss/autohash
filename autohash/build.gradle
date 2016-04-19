@@ -6,6 +6,7 @@ buildscript {
     }
     dependencies {
         classpath "gradle.plugin.me.champeau.gradle:jmh-gradle-plugin:0.3.0"
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
     }
 }
 
@@ -14,12 +15,22 @@ plugins {
     id 'java'
     id 'idea'
     id 'me.champeau.gradle.jmh' version '0.3.0'
+    id 'com.github.johnrengelman.shadow' version '1.2.3'
 }
 apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
 
 
 sourceCompatibility = JavaVersion.VERSION_1_7
 targetCompatibility = JavaVersion.VERSION_1_7
+
+
+sourceSets {
+    caliper {
+        java {
+            srcDir 'src/caliper/java'
+        }
+    }
+}
 
 
 dependencies {
@@ -35,8 +46,51 @@ dependencies {
     testCompile libraries.commonsLang
     // we need 'tools.jar' (which is a part of JDK) to test annotations processor
     testCompile files(org.gradle.internal.jvm.Jvm.current().getToolsJar())
+
+//    caliperCompile sourceSets.main.output // ugh is it really the proper way to do it?
+//    caliperCompile configurations.compile  // TODO include main project dependencies
+    caliperCompile 'com.google.caliper:caliper:0.5-rc1'
 }
 
 jmh {
     jmhVersion = versions.jmh
+}
+
+
+idea.module.scopes.PROVIDED.plus += [ configurations.jmhCompile ]
+idea.module.scopes.PROVIDED.plus += [ configurations.caliperCompile ]
+
+
+shadowJar {
+    classifier = "caliper"
+    manifest {
+        attributes 'Implementation-Title' : 'Example of Caliper benchmark on android',
+                   'Main-Class'           : 'benchmarks.DoubleToStringBenchmark'
+    }
+    configurations = [project.configurations.caliperRuntime ] + [project.configurations.caliperCompile]
+
+    from(project.sourceSets.caliper.output)
+
+}
+
+task alala(type: Exec, dependsOn: shadowJar) {
+    commandLine('/L/soft/android-sdk-linux/build-tools/23.0.3/dx', '--dex', '--output=result.jar', shadowJar.archivePath)
+    commandLine 'adb', 'push', 'result.jar', '/sdcard/caliper.jar'
+    commandLine 'adb', 'shell', 'dalvikvm', '-cp', '/sdcard/caliper.jar', 'benchmarks.DoubleToStringBenchmark'
+}
+
+
+task runCaliper(type: JavaExec, dependsOn: compileCaliperJava) {
+//    def vmVer = System.getProperty('java.version')
+//    def osName = System.getProperty('os.name').replaceAll('\\s','')
+//    def osArch = System.getProperty('os.arch')
+//    def fnameBase = "ver${version}_${osName}-${osArch}_jvm${vmVer}"
+//    def benchMarksDir = "${project.buildDir}/benchmarks"
+//    ant.mkdir(dir: benchMarksDir)
+//    def outStream = new FileOutputStream("${benchMarksDir}/${fnameBase}-out.txt")
+//    standardOutput = outStream
+    classpath = sourceSets.caliper.runtimeClasspath
+    print(classpath)
+    main = 'benchmarks.DoubleToStringBenchmark'
+//    args = ['--saveResults', "${benchMarksDir}/${fnameBase}.json", '-Jmode=-server,-client']
 }
