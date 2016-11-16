@@ -1,11 +1,9 @@
 buildscript {
     repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
+        jcenter()
     }
     dependencies {
-        classpath "gradle.plugin.me.champeau.gradle:jmh-gradle-plugin:0.3.0"
+        classpath "me.champeau.gradle:jmh-gradle-plugin:0.3.1"
     }
 }
 
@@ -13,7 +11,7 @@ buildscript {
 plugins {
     id 'java'
     id 'idea'
-    id 'me.champeau.gradle.jmh' version '0.3.0'
+    id 'me.champeau.gradle.jmh' version '0.3.1'
 }
 apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
 
@@ -35,6 +33,8 @@ dependencies {
     testCompile libraries.commonsLang
     // we need 'tools.jar' (which is a part of JDK) to test annotations processor
     testCompile files(org.gradle.internal.jvm.Jvm.current().getToolsJar())
+
+    jmh libraries.commonsLang
 }
 
 jmh {
