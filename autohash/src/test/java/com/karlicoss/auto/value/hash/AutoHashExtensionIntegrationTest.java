@@ -3,7 +3,6 @@ package com.karlicoss.auto.value.hash;
 import com.google.auto.value.processor.AutoValueProcessor;
 import com.google.testing.compile.JavaFileObjects;
 import org.apache.commons.lang3.reflect.FieldUtils;
-import org.jetbrains.annotations.NotNull;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -29,10 +28,8 @@ public class AutoHashExtensionIntegrationTest {
     @Rule
     public TemporaryFolder tmpFolder = new TemporaryFolder();
 
-    @NotNull // initialized in @Before
     private Object hashCodeCallsCaptor;
 
-    @NotNull // initialized in @Before
     private Object integrationTestHelper;
 
     @Before

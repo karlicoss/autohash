@@ -1,7 +1,5 @@
 package com.karlicoss.auto.value.hash;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 
 class Util {
@@ -11,8 +9,8 @@ class Util {
     /*
         I wish I could use java 8 APIs...
      */
-    @NotNull
-    public static String join(@NotNull CharSequence delimiter, @NotNull List<? extends CharSequence> elements) {
+    
+    public static String join( CharSequence delimiter,  List<? extends CharSequence> elements) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < elements.size(); i++) {
             result.append(elements.get(i));

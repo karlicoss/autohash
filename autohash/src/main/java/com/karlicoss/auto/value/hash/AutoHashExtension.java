@@ -10,7 +10,6 @@ import com.squareup.javapoet.ParameterSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import com.squareup.javapoet.TypeVariableName;
-import org.jetbrains.annotations.NotNull;
 
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
@@ -29,14 +28,13 @@ import static javax.lang.model.element.Modifier.PUBLIC;
 public class AutoHashExtension extends AutoValueExtension {
 
     @Override
-    public boolean applicable(@NotNull Context context) {
+    public boolean applicable( Context context) {
         TypeElement type = context.autoValueClass();
         return type.getAnnotation(AutoHash.class) != null;
     }
 
     @Override
-    @NotNull
-    public String generateClass(@NotNull Context context, @NotNull String className, @NotNull String classToExtend, boolean isFinal) {
+    public String generateClass( Context context,  String className,  String classToExtend, boolean isFinal) {
         TypeSpec.Builder subclass = TypeSpec.classBuilder(className)
                 .superclass(TypeVariableName.get(classToExtend))
                 .addField(FieldSpec.builder(INT, "hashCode", PRIVATE).build())
@@ -47,7 +45,7 @@ public class AutoHashExtension extends AutoValueExtension {
         return JavaFile.builder(context.packageName(), subclass.build()).build().toString();
     }
 
-    @NotNull
+    
     MethodSpec generateHashCode() {
         MethodSpec.Builder hashCodeMethod = MethodSpec.methodBuilder("hashCode")
                 .addAnnotation(Override.class)
@@ -63,8 +61,8 @@ public class AutoHashExtension extends AutoValueExtension {
         return hashCodeMethod.build();
     }
 
-    @NotNull
-    private static MethodSpec generateSuperCallConstructor(@NotNull Map<String, ExecutableElement> properties) {
+    
+    private static MethodSpec generateSuperCallConstructor( Map<String, ExecutableElement> properties) {
         List<ParameterSpec> params = new ArrayList<>();
         for (Map.Entry<String, ExecutableElement> entry : properties.entrySet()) {
             TypeName typeName = TypeName.get(entry.getValue().getReturnType());
