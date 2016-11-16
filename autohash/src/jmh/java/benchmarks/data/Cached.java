@@ -2,7 +2,7 @@ package benchmarks.data;
 
 import com.google.auto.value.AutoValue;
 import com.karlicoss.auto.value.hash.AutoHash;
-import javafx.util.Pair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.List;
 

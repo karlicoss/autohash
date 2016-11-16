@@ -2,7 +2,7 @@ package benchmarks;
 
 import benchmarks.data.Cached;
 import benchmarks.data.NotCached;
-import javafx.util.Pair;
+import org.apache.commons.lang3.tuple.Pair;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Fork;
@@ -49,7 +49,7 @@ public class TestBenchmark {
                 }
                 users = new ArrayList<>(length2);
                 for (int i = 0; i < length2; i++) {
-                    Pair<String, String> p = new Pair<>(valueOf(random.nextLong()), valueOf(random.nextLong()));
+                    Pair<String, String> p = Pair.of(valueOf(random.nextLong()), valueOf(random.nextLong()));
                     users.add(p);
                 }
             }
