@@ -5,6 +5,16 @@ their `hashCode` result in a thread safe and efficient manner.
 
 The implementation is similar to `java.lang.String::hashCode`.
 
+# Running benchmarks
+
+## JMH (desktop JVM benchmark)
+
+    ./gradlew JMH
+
+## Android benchmark
+
+    TODO
+
 
 ## TODO
 
