@@ -30,7 +30,7 @@ import static java.lang.String.valueOf;
 @Measurement(iterations=10)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
-@Fork(5)
+@Fork(1)
 public class TestBenchmark {
 
     @State(Scope.Thread)
@@ -66,7 +66,7 @@ public class TestBenchmark {
             }
         }
 
-        @Param({"true", "false"})
+        @Param({"false", "true"})
         public boolean cachingOn;
 
         public List<Object> items;
@@ -86,9 +86,9 @@ public class TestBenchmark {
         }
     }
 
-    /*
-        Just a sanity check to avoid any additional overhead.
-        Results should be roughly the same, cached version will be slightly slower.
+    /**
+     * Just a sanity check to avoid any additional overhead.
+     * Results should be roughly the same, cached version will be slightly slower.
      */
     @Benchmark
     public void combineHashCodes(MyState state, Blackhole hole) {
