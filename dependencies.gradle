@@ -20,7 +20,7 @@ ext.versions = [
     commonsLang          : '3.4',
 
     // profiling dependencies
-    jmh                  : '1.12',
+    jmh                  : '1.17',
 ]
 
 ext.libraries = [
