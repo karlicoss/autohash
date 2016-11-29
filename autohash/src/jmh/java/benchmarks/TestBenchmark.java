@@ -27,7 +27,7 @@ import static java.lang.String.valueOf;
 
 
 @Warmup(iterations=5)
-@Measurement(iterations=10)
+@Measurement(iterations=30)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
 @Fork(1)
@@ -88,7 +88,7 @@ public class TestBenchmark {
 
     /**
      * Just a sanity check to avoid any additional overhead.
-     * Results should be roughly the same, cached version will be slightly slower.
+     * Should be roughly the same, with enabled caching might be slightly slower.
      */
     @Benchmark
     public void combineHashCodes(MyState state, Blackhole hole) {
@@ -101,14 +101,18 @@ public class TestBenchmark {
         hole.consume(combined);
     }
 
+    /**
+     * Should be slower with enabled caching.
+     */
     @Benchmark
     public void getFromSmallHashSet(MyState state, Blackhole hole) {
         final List<Object> items = state.items;
 
-        HashSet<Object> set = new HashSet<>(items);
+        HashSet<Object> set = new HashSet<>();
         // add few items to prevent check for empty map
         set.add(new Object());
         set.add(4);
+        set.add("tralalal");
 
         boolean result = true;
         for (Object item: items) {
@@ -117,7 +121,9 @@ public class TestBenchmark {
         hole.consume(result);
     }
 
-
+    /**
+     * Should be slower with enabled caching.
+     */
     @Benchmark
     public void putInHashSet(MyState state, Blackhole hole) {
         final List<Object> items = state.items;
@@ -126,8 +132,11 @@ public class TestBenchmark {
         hole.consume(set);
     }
 
+    /**
+     * Should be faster with enabled caching
+     */
     @Benchmark
-    public void putInHashSetAndQuery(MyState state, Blackhole hole) {
+    public void putInHashSetAndQueryOnce(MyState state, Blackhole hole) {
         final List<Object> items = state.items;
 
         HashSet<Object> set = new HashSet<>(items);
@@ -139,14 +148,17 @@ public class TestBenchmark {
         hole.consume(result);
     }
 
+    /**
+     * Should be faster with enabled caching.
+     */
     @Benchmark
-    public void putInHashSetAndQueryThreeTimes(MyState state, Blackhole hole) {
+    public void putInHashSetAndQueryTenTimes(MyState state, Blackhole hole) {
         final List<Object> items = state.items;
 
         HashSet<Object> set = new HashSet<>(items);
 
         boolean result = true;
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 10; i++) {
             for (Object item: items) {
                 result &= set.contains(item);
             }

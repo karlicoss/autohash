@@ -1,0 +1,603 @@
+Starting a new Gradle Daemon for this build (subsequent builds will be faster).
+:autohash:compileJava UP-TO-DATE
+:autohash:processResources UP-TO-DATE
+:autohash:classes UP-TO-DATE
+:autohash:compileTestJava UP-TO-DATE
+:autohash:processTestResources UP-TO-DATE
+:autohash:testClasses UP-TO-DATE
+:autohash:compileJmhJava UP-TO-DATE
+:autohash:processJmhResources UP-TO-DATE
+:autohash:jmhClasses UP-TO-DATE
+:autohash:jmhRunBytecodeGenerator UP-TO-DATE
+:autohash:jmhCompileGeneratedClasses UP-TO-DATE
+:autohash:jmhJar UP-TO-DATE
+:autohash:jmh
+# JMH 1.17 (released 7 days ago)
+# VM version: JDK 1.8.0_111, VM 25.111-b14
+# VM invoker: /usr/lib/jvm/java-8-oracle/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Duser.variant
+# Warmup: 5 iterations, 1 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.TestBenchmark.combineHashCodes
+# Parameters: (cachingOn = false)
+
+# Run progress: 0.00% complete, ETA 00:05:50
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.094 us/op
+# Warmup Iteration   2: 0.088 us/op
+# Warmup Iteration   3: 0.087 us/op
+# Warmup Iteration   4: 0.087 us/op
+# Warmup Iteration   5: 0.087 us/op
+Iteration   1: 0.087 us/op
+Iteration   2: 0.087 us/op
+Iteration   3: 0.087 us/op
+Iteration   4: 0.087 us/op
+Iteration   5: 0.087 us/op
+Iteration   6: 0.087 us/op
+Iteration   7: 0.087 us/op
+Iteration   8: 0.087 us/op
+Iteration   9: 0.087 us/op
+Iteration  10: 0.087 us/op
+Iteration  11: 0.087 us/op
+Iteration  12: 0.087 us/op
+Iteration  13: 0.087 us/op
+Iteration  14: 0.087 us/op
+Iteration  15: 0.087 us/op
+Iteration  16: 0.087 us/op
+Iteration  17: 0.088 us/op
+Iteration  18: 0.087 us/op
+Iteration  19: 0.087 us/op
+Iteration  20: 0.087 us/op
+Iteration  21: 0.087 us/op
+Iteration  22: 0.087 us/op
+Iteration  23: 0.087 us/op
+Iteration  24: 0.087 us/op
+Iteration  25: 0.087 us/op
+Iteration  26: 0.087 us/op
+Iteration  27: 0.088 us/op
+Iteration  28: 0.087 us/op
+Iteration  29: 0.087 us/op
+Iteration  30: 0.087 us/op
+
+
+Result "combineHashCodes":
+  0.087 ±(99.9%) 0.001 us/op [Average]
+  (min, avg, max) = (0.087, 0.087, 0.088), stdev = 0.001
+  CI (99.9%): [0.087, 0.087] (assumes normal distribution)
+
+
+# JMH 1.17 (released 7 days ago)
+# VM version: JDK 1.8.0_111, VM 25.111-b14
+# VM invoker: /usr/lib/jvm/java-8-oracle/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Duser.variant
+# Warmup: 5 iterations, 1 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.TestBenchmark.combineHashCodes
+# Parameters: (cachingOn = true)
+
+# Run progress: 10.00% complete, ETA 00:05:17
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.095 us/op
+# Warmup Iteration   2: 0.090 us/op
+# Warmup Iteration   3: 0.088 us/op
+# Warmup Iteration   4: 0.088 us/op
+# Warmup Iteration   5: 0.088 us/op
+Iteration   1: 0.088 us/op
+Iteration   2: 0.088 us/op
+Iteration   3: 0.088 us/op
+Iteration   4: 0.088 us/op
+Iteration   5: 0.088 us/op
+Iteration   6: 0.088 us/op
+Iteration   7: 0.088 us/op
+Iteration   8: 0.088 us/op
+Iteration   9: 0.088 us/op
+Iteration  10: 0.088 us/op
+Iteration  11: 0.088 us/op
+Iteration  12: 0.088 us/op
+Iteration  13: 0.088 us/op
+Iteration  14: 0.088 us/op
+Iteration  15: 0.088 us/op
+Iteration  16: 0.088 us/op
+Iteration  17: 0.088 us/op
+Iteration  18: 0.088 us/op
+Iteration  19: 0.088 us/op
+Iteration  20: 0.088 us/op
+Iteration  21: 0.088 us/op
+Iteration  22: 0.088 us/op
+Iteration  23: 0.088 us/op
+Iteration  24: 0.088 us/op
+Iteration  25: 0.088 us/op
+Iteration  26: 0.088 us/op
+Iteration  27: 0.088 us/op
+Iteration  28: 0.088 us/op
+Iteration  29: 0.088 us/op
+Iteration  30: 0.088 us/op
+
+
+Result "combineHashCodes":
+  0.088 ±(99.9%) 0.001 us/op [Average]
+  (min, avg, max) = (0.088, 0.088, 0.088), stdev = 0.001
+  CI (99.9%): [0.088, 0.088] (assumes normal distribution)
+
+
+# JMH 1.17 (released 7 days ago)
+# VM version: JDK 1.8.0_111, VM 25.111-b14
+# VM invoker: /usr/lib/jvm/java-8-oracle/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Duser.variant
+# Warmup: 5 iterations, 1 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.TestBenchmark.getFromSmallHashSet
+# Parameters: (cachingOn = false)
+
+# Run progress: 20.00% complete, ETA 00:04:42
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.197 us/op
+# Warmup Iteration   2: 0.188 us/op
+# Warmup Iteration   3: 0.181 us/op
+# Warmup Iteration   4: 0.183 us/op
+# Warmup Iteration   5: 0.194 us/op
+Iteration   1: 0.194 us/op
+Iteration   2: 0.194 us/op
+Iteration   3: 0.194 us/op
+Iteration   4: 0.195 us/op
+Iteration   5: 0.194 us/op
+Iteration   6: 0.196 us/op
+Iteration   7: 0.195 us/op
+Iteration   8: 0.197 us/op
+Iteration   9: 0.196 us/op
+Iteration  10: 0.195 us/op
+Iteration  11: 0.196 us/op
+Iteration  12: 0.196 us/op
+Iteration  13: 0.195 us/op
+Iteration  14: 0.196 us/op
+Iteration  15: 0.196 us/op
+Iteration  16: 0.195 us/op
+Iteration  17: 0.196 us/op
+Iteration  18: 0.196 us/op
+Iteration  19: 0.195 us/op
+Iteration  20: 0.196 us/op
+Iteration  21: 0.196 us/op
+Iteration  22: 0.196 us/op
+Iteration  23: 0.196 us/op
+Iteration  24: 0.196 us/op
+Iteration  25: 0.195 us/op
+Iteration  26: 0.197 us/op
+Iteration  27: 0.195 us/op
+Iteration  28: 0.195 us/op
+Iteration  29: 0.195 us/op
+Iteration  30: 0.195 us/op
+
+
+Result "getFromSmallHashSet":
+  0.195 ±(99.9%) 0.001 us/op [Average]
+  (min, avg, max) = (0.194, 0.195, 0.197), stdev = 0.001
+  CI (99.9%): [0.195, 0.196] (assumes normal distribution)
+
+
+# JMH 1.17 (released 7 days ago)
+# VM version: JDK 1.8.0_111, VM 25.111-b14
+# VM invoker: /usr/lib/jvm/java-8-oracle/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Duser.variant
+# Warmup: 5 iterations, 1 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.TestBenchmark.getFromSmallHashSet
+# Parameters: (cachingOn = true)
+
+# Run progress: 30.00% complete, ETA 00:04:07
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.197 us/op
+# Warmup Iteration   2: 0.183 us/op
+# Warmup Iteration   3: 0.177 us/op
+# Warmup Iteration   4: 0.179 us/op
+# Warmup Iteration   5: 0.191 us/op
+Iteration   1: 0.192 us/op
+Iteration   2: 0.191 us/op
+Iteration   3: 0.191 us/op
+Iteration   4: 0.191 us/op
+Iteration   5: 0.192 us/op
+Iteration   6: 0.192 us/op
+Iteration   7: 0.193 us/op
+Iteration   8: 0.192 us/op
+Iteration   9: 0.191 us/op
+Iteration  10: 0.190 us/op
+Iteration  11: 0.191 us/op
+Iteration  12: 0.191 us/op
+Iteration  13: 0.191 us/op
+Iteration  14: 0.191 us/op
+Iteration  15: 0.193 us/op
+Iteration  16: 0.192 us/op
+Iteration  17: 0.192 us/op
+Iteration  18: 0.193 us/op
+Iteration  19: 0.192 us/op
+Iteration  20: 0.192 us/op
+Iteration  21: 0.192 us/op
+Iteration  22: 0.192 us/op
+Iteration  23: 0.192 us/op
+Iteration  24: 0.192 us/op
+Iteration  25: 0.192 us/op
+Iteration  26: 0.194 us/op
+Iteration  27: 0.193 us/op
+Iteration  28: 0.192 us/op
+Iteration  29: 0.192 us/op
+Iteration  30: 0.193 us/op
+
+
+Result "getFromSmallHashSet":
+  0.192 ±(99.9%) 0.001 us/op [Average]
+  (min, avg, max) = (0.190, 0.192, 0.194), stdev = 0.001
+  CI (99.9%): [0.191, 0.192] (assumes normal distribution)
+
+
+# JMH 1.17 (released 7 days ago)
+# VM version: JDK 1.8.0_111, VM 25.111-b14
+# VM invoker: /usr/lib/jvm/java-8-oracle/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Duser.variant
+# Warmup: 5 iterations, 1 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.TestBenchmark.putInHashSet
+# Parameters: (cachingOn = false)
+
+# Run progress: 40.00% complete, ETA 00:03:31
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.136 us/op
+# Warmup Iteration   2: 0.129 us/op
+# Warmup Iteration   3: 0.126 us/op
+# Warmup Iteration   4: 0.126 us/op
+# Warmup Iteration   5: 0.126 us/op
+Iteration   1: 0.127 us/op
+Iteration   2: 0.126 us/op
+Iteration   3: 0.127 us/op
+Iteration   4: 0.127 us/op
+Iteration   5: 0.138 us/op
+Iteration   6: 0.233 us/op
+Iteration   7: 0.232 us/op
+Iteration   8: 0.233 us/op
+Iteration   9: 0.213 us/op
+Iteration  10: 0.161 us/op
+Iteration  11: 0.161 us/op
+Iteration  12: 0.161 us/op
+Iteration  13: 0.155 us/op
+Iteration  14: 0.129 us/op
+Iteration  15: 0.130 us/op
+Iteration  16: 0.129 us/op
+Iteration  17: 0.131 us/op
+Iteration  18: 0.129 us/op
+Iteration  19: 0.130 us/op
+Iteration  20: 0.130 us/op
+Iteration  21: 0.130 us/op
+Iteration  22: 0.130 us/op
+Iteration  23: 0.130 us/op
+Iteration  24: 0.130 us/op
+Iteration  25: 0.130 us/op
+Iteration  26: 0.130 us/op
+Iteration  27: 0.129 us/op
+Iteration  28: 0.130 us/op
+Iteration  29: 0.130 us/op
+Iteration  30: 0.130 us/op
+
+
+Result "putInHashSet":
+  0.147 ±(99.9%) 0.023 us/op [Average]
+  (min, avg, max) = (0.126, 0.147, 0.233), stdev = 0.034
+  CI (99.9%): [0.124, 0.169] (assumes normal distribution)
+
+
+# JMH 1.17 (released 7 days ago)
+# VM version: JDK 1.8.0_111, VM 25.111-b14
+# VM invoker: /usr/lib/jvm/java-8-oracle/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Duser.variant
+# Warmup: 5 iterations, 1 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.TestBenchmark.putInHashSet
+# Parameters: (cachingOn = true)
+
+# Run progress: 50.00% complete, ETA 00:02:56
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.135 us/op
+# Warmup Iteration   2: 0.132 us/op
+# Warmup Iteration   3: 0.124 us/op
+# Warmup Iteration   4: 0.122 us/op
+# Warmup Iteration   5: 0.122 us/op
+Iteration   1: 0.122 us/op
+Iteration   2: 0.152 us/op
+Iteration   3: 0.222 us/op
+Iteration   4: 0.223 us/op
+Iteration   5: 0.224 us/op
+Iteration   6: 0.183 us/op
+Iteration   7: 0.154 us/op
+Iteration   8: 0.154 us/op
+Iteration   9: 0.154 us/op
+Iteration  10: 0.135 us/op
+Iteration  11: 0.123 us/op
+Iteration  12: 0.123 us/op
+Iteration  13: 0.122 us/op
+Iteration  14: 0.123 us/op
+Iteration  15: 0.123 us/op
+Iteration  16: 0.123 us/op
+Iteration  17: 0.124 us/op
+Iteration  18: 0.124 us/op
+Iteration  19: 0.124 us/op
+Iteration  20: 0.123 us/op
+Iteration  21: 0.124 us/op
+Iteration  22: 0.124 us/op
+Iteration  23: 0.123 us/op
+Iteration  24: 0.123 us/op
+Iteration  25: 0.123 us/op
+Iteration  26: 0.124 us/op
+Iteration  27: 0.123 us/op
+Iteration  28: 0.124 us/op
+Iteration  29: 0.123 us/op
+Iteration  30: 0.123 us/op
+
+
+Result "putInHashSet":
+  0.140 ±(99.9%) 0.021 us/op [Average]
+  (min, avg, max) = (0.122, 0.140, 0.224), stdev = 0.032
+  CI (99.9%): [0.118, 0.161] (assumes normal distribution)
+
+
+# JMH 1.17 (released 7 days ago)
+# VM version: JDK 1.8.0_111, VM 25.111-b14
+# VM invoker: /usr/lib/jvm/java-8-oracle/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Duser.variant
+# Warmup: 5 iterations, 1 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.TestBenchmark.putInHashSetAndQueryOnce
+# Parameters: (cachingOn = false)
+
+# Run progress: 60.00% complete, ETA 00:02:21
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.211 us/op
+# Warmup Iteration   2: 0.201 us/op
+# Warmup Iteration   3: 0.194 us/op
+# Warmup Iteration   4: 0.194 us/op
+# Warmup Iteration   5: 0.194 us/op
+Iteration   1: 0.194 us/op
+Iteration   2: 0.194 us/op
+Iteration   3: 0.308 us/op
+Iteration   4: 0.353 us/op
+Iteration   5: 0.354 us/op
+Iteration   6: 0.354 us/op
+Iteration   7: 0.257 us/op
+Iteration   8: 0.249 us/op
+Iteration   9: 0.246 us/op
+Iteration  10: 0.244 us/op
+Iteration  11: 0.194 us/op
+Iteration  12: 0.195 us/op
+Iteration  13: 0.195 us/op
+Iteration  14: 0.196 us/op
+Iteration  15: 0.196 us/op
+Iteration  16: 0.196 us/op
+Iteration  17: 0.196 us/op
+Iteration  18: 0.195 us/op
+Iteration  19: 0.197 us/op
+Iteration  20: 0.196 us/op
+Iteration  21: 0.196 us/op
+Iteration  22: 0.196 us/op
+Iteration  23: 0.196 us/op
+Iteration  24: 0.195 us/op
+Iteration  25: 0.196 us/op
+Iteration  26: 0.197 us/op
+Iteration  27: 0.195 us/op
+Iteration  28: 0.196 us/op
+Iteration  29: 0.196 us/op
+Iteration  30: 0.197 us/op
+
+
+Result "putInHashSetAndQueryOnce":
+  0.222 ±(99.9%) 0.035 us/op [Average]
+  (min, avg, max) = (0.194, 0.222, 0.354), stdev = 0.052
+  CI (99.9%): [0.188, 0.257] (assumes normal distribution)
+
+
+# JMH 1.17 (released 7 days ago)
+# VM version: JDK 1.8.0_111, VM 25.111-b14
+# VM invoker: /usr/lib/jvm/java-8-oracle/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Duser.variant
+# Warmup: 5 iterations, 1 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.TestBenchmark.putInHashSetAndQueryOnce
+# Parameters: (cachingOn = true)
+
+# Run progress: 70.00% complete, ETA 00:01:45
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.157 us/op
+# Warmup Iteration   2: 0.150 us/op
+# Warmup Iteration   3: 0.146 us/op
+# Warmup Iteration   4: 0.147 us/op
+# Warmup Iteration   5: 0.146 us/op
+Iteration   1: 0.146 us/op
+Iteration   2: 0.146 us/op
+Iteration   3: 0.146 us/op
+Iteration   4: 0.147 us/op
+Iteration   5: 0.147 us/op
+Iteration   6: 0.147 us/op
+Iteration   7: 0.147 us/op
+Iteration   8: 0.148 us/op
+Iteration   9: 0.148 us/op
+Iteration  10: 0.148 us/op
+Iteration  11: 0.147 us/op
+Iteration  12: 0.147 us/op
+Iteration  13: 0.147 us/op
+Iteration  14: 0.148 us/op
+Iteration  15: 0.148 us/op
+Iteration  16: 0.148 us/op
+Iteration  17: 0.148 us/op
+Iteration  18: 0.148 us/op
+Iteration  19: 0.147 us/op
+Iteration  20: 0.148 us/op
+Iteration  21: 0.148 us/op
+Iteration  22: 0.148 us/op
+Iteration  23: 0.147 us/op
+Iteration  24: 0.147 us/op
+Iteration  25: 0.148 us/op
+Iteration  26: 0.147 us/op
+Iteration  27: 0.148 us/op
+Iteration  28: 0.147 us/op
+Iteration  29: 0.148 us/op
+Iteration  30: 0.148 us/op
+
+
+Result "putInHashSetAndQueryOnce":
+  0.147 ±(99.9%) 0.001 us/op [Average]
+  (min, avg, max) = (0.146, 0.147, 0.148), stdev = 0.001
+  CI (99.9%): [0.147, 0.148] (assumes normal distribution)
+
+
+# JMH 1.17 (released 7 days ago)
+# VM version: JDK 1.8.0_111, VM 25.111-b14
+# VM invoker: /usr/lib/jvm/java-8-oracle/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Duser.variant
+# Warmup: 5 iterations, 1 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.TestBenchmark.putInHashSetAndQueryTenTimes
+# Parameters: (cachingOn = false)
+
+# Run progress: 80.00% complete, ETA 00:01:10
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.916 us/op
+# Warmup Iteration   2: 0.893 us/op
+# Warmup Iteration   3: 0.847 us/op
+# Warmup Iteration   4: 0.846 us/op
+# Warmup Iteration   5: 0.848 us/op
+Iteration   1: 0.845 us/op
+Iteration   2: 0.846 us/op
+Iteration   3: 0.846 us/op
+Iteration   4: 0.948 us/op
+Iteration   5: 1.406 us/op
+Iteration   6: 1.546 us/op
+Iteration   7: 1.547 us/op
+Iteration   8: 1.223 us/op
+Iteration   9: 1.074 us/op
+Iteration  10: 1.073 us/op
+Iteration  11: 1.069 us/op
+Iteration  12: 0.923 us/op
+Iteration  13: 0.846 us/op
+Iteration  14: 0.845 us/op
+Iteration  15: 0.846 us/op
+Iteration  16: 0.847 us/op
+Iteration  17: 0.845 us/op
+Iteration  18: 0.845 us/op
+Iteration  19: 0.845 us/op
+Iteration  20: 0.845 us/op
+Iteration  21: 0.844 us/op
+Iteration  22: 0.846 us/op
+Iteration  23: 0.851 us/op
+Iteration  24: 0.845 us/op
+Iteration  25: 0.848 us/op
+Iteration  26: 0.845 us/op
+Iteration  27: 0.848 us/op
+Iteration  28: 0.846 us/op
+Iteration  29: 0.845 us/op
+Iteration  30: 0.845 us/op
+
+
+Result "putInHashSetAndQueryTenTimes":
+  0.952 ±(99.9%) 0.140 us/op [Average]
+  (min, avg, max) = (0.844, 0.952, 1.547), stdev = 0.209
+  CI (99.9%): [0.813, 1.092] (assumes normal distribution)
+
+
+# JMH 1.17 (released 7 days ago)
+# VM version: JDK 1.8.0_111, VM 25.111-b14
+# VM invoker: /usr/lib/jvm/java-8-oracle/jre/bin/java
+# VM options: -Dfile.encoding=UTF-8 -Duser.country=US -Duser.language=en -Duser.variant
+# Warmup: 5 iterations, 1 s each
+# Measurement: 30 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmarks.TestBenchmark.putInHashSetAndQueryTenTimes
+# Parameters: (cachingOn = true)
+
+# Run progress: 90.00% complete, ETA 00:00:35
+# Fork: 1 of 1
+# Warmup Iteration   1: 0.234 us/op
+# Warmup Iteration   2: 0.228 us/op
+# Warmup Iteration   3: 0.207 us/op
+# Warmup Iteration   4: 0.207 us/op
+# Warmup Iteration   5: 0.207 us/op
+Iteration   1: 0.207 us/op
+Iteration   2: 0.207 us/op
+Iteration   3: 0.207 us/op
+Iteration   4: 0.208 us/op
+Iteration   5: 0.208 us/op
+Iteration   6: 0.208 us/op
+Iteration   7: 0.208 us/op
+Iteration   8: 0.208 us/op
+Iteration   9: 0.208 us/op
+Iteration  10: 0.208 us/op
+Iteration  11: 0.209 us/op
+Iteration  12: 0.209 us/op
+Iteration  13: 0.210 us/op
+Iteration  14: 0.210 us/op
+Iteration  15: 0.210 us/op
+Iteration  16: 0.209 us/op
+Iteration  17: 0.209 us/op
+Iteration  18: 0.210 us/op
+Iteration  19: 0.210 us/op
+Iteration  20: 0.210 us/op
+Iteration  21: 0.210 us/op
+Iteration  22: 0.209 us/op
+Iteration  23: 0.209 us/op
+Iteration  24: 0.209 us/op
+Iteration  25: 0.209 us/op
+Iteration  26: 0.210 us/op
+Iteration  27: 0.209 us/op
+Iteration  28: 0.208 us/op
+Iteration  29: 0.209 us/op
+Iteration  30: 0.210 us/op
+
+
+Result "putInHashSetAndQueryTenTimes":
+  0.209 ±(99.9%) 0.001 us/op [Average]
+  (min, avg, max) = (0.207, 0.209, 0.210), stdev = 0.001
+  CI (99.9%): [0.208, 0.209] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:05:53
+
+Benchmark                                   (cachingOn)  Mode  Cnt  Score    Error  Units
+TestBenchmark.combineHashCodes                    false  avgt   30  0.087 ±  0.001  us/op
+TestBenchmark.combineHashCodes                     true  avgt   30  0.088 ±  0.001  us/op
+TestBenchmark.getFromSmallHashSet                 false  avgt   30  0.195 ±  0.001  us/op
+TestBenchmark.getFromSmallHashSet                  true  avgt   30  0.192 ±  0.001  us/op
+TestBenchmark.putInHashSet                        false  avgt   30  0.147 ±  0.023  us/op
+TestBenchmark.putInHashSet                         true  avgt   30  0.140 ±  0.021  us/op
+TestBenchmark.putInHashSetAndQueryOnce            false  avgt   30  0.222 ±  0.035  us/op
+TestBenchmark.putInHashSetAndQueryOnce             true  avgt   30  0.147 ±  0.001  us/op
+TestBenchmark.putInHashSetAndQueryTenTimes        false  avgt   30  0.952 ±  0.140  us/op
+TestBenchmark.putInHashSetAndQueryTenTimes         true  avgt   30  0.209 ±  0.001  us/op
+
+Benchmark result is saved to build/reports/jmh/results.txt
+
+BUILD SUCCESSFUL
+
+Total time: 5 mins 58.088 secs
