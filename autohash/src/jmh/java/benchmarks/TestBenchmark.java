@@ -136,7 +136,7 @@ public class TestBenchmark {
      * Should be faster with enabled caching
      */
     @Benchmark
-    public void putInHashSetAndQueryOnce(MyState state, Blackhole hole) {
+    public void putInHashSetAndGetOnce(MyState state, Blackhole hole) {
         final List<Object> items = state.items;
 
         HashSet<Object> set = new HashSet<>(items);
@@ -152,7 +152,7 @@ public class TestBenchmark {
      * Should be faster with enabled caching.
      */
     @Benchmark
-    public void putInHashSetAndQueryTenTimes(MyState state, Blackhole hole) {
+    public void putInHashSetAndGetTenTimes(MyState state, Blackhole hole) {
         final List<Object> items = state.items;
 
         HashSet<Object> set = new HashSet<>(items);

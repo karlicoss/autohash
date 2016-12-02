@@ -363,7 +363,7 @@ Result "putInHashSet":
 # Timeout: 10 min per iteration
 # Threads: 1 thread, will synchronize iterations
 # Benchmark mode: Average time, time/op
-# Benchmark: benchmarks.TestBenchmark.putInHashSetAndQueryOnce
+# Benchmark: benchmarks.TestBenchmark.putInHashSetAndGetOnce
 # Parameters: (cachingOn = false)
 
 # Run progress: 60.00% complete, ETA 00:02:21
@@ -405,7 +405,7 @@ Iteration  29: 0.196 us/op
 Iteration  30: 0.197 us/op
 
 
-Result "putInHashSetAndQueryOnce":
+Result "putInHashSetAndGetOnce":
   0.222 ±(99.9%) 0.035 us/op [Average]
   (min, avg, max) = (0.194, 0.222, 0.354), stdev = 0.052
   CI (99.9%): [0.188, 0.257] (assumes normal distribution)
@@ -420,7 +420,7 @@ Result "putInHashSetAndQueryOnce":
 # Timeout: 10 min per iteration
 # Threads: 1 thread, will synchronize iterations
 # Benchmark mode: Average time, time/op
-# Benchmark: benchmarks.TestBenchmark.putInHashSetAndQueryOnce
+# Benchmark: benchmarks.TestBenchmark.putInHashSetAndGetOnce
 # Parameters: (cachingOn = true)
 
 # Run progress: 70.00% complete, ETA 00:01:45
@@ -462,7 +462,7 @@ Iteration  29: 0.148 us/op
 Iteration  30: 0.148 us/op
 
 
-Result "putInHashSetAndQueryOnce":
+Result "putInHashSetAndGetOnce":
   0.147 ±(99.9%) 0.001 us/op [Average]
   (min, avg, max) = (0.146, 0.147, 0.148), stdev = 0.001
   CI (99.9%): [0.147, 0.148] (assumes normal distribution)
@@ -477,7 +477,7 @@ Result "putInHashSetAndQueryOnce":
 # Timeout: 10 min per iteration
 # Threads: 1 thread, will synchronize iterations
 # Benchmark mode: Average time, time/op
-# Benchmark: benchmarks.TestBenchmark.putInHashSetAndQueryTenTimes
+# Benchmark: benchmarks.TestBenchmark.putInHashSetAndGetTenTimes
 # Parameters: (cachingOn = false)
 
 # Run progress: 80.00% complete, ETA 00:01:10
@@ -519,7 +519,7 @@ Iteration  29: 0.845 us/op
 Iteration  30: 0.845 us/op
 
 
-Result "putInHashSetAndQueryTenTimes":
+Result "putInHashSetAndGetTenTimes":
   0.952 ±(99.9%) 0.140 us/op [Average]
   (min, avg, max) = (0.844, 0.952, 1.547), stdev = 0.209
   CI (99.9%): [0.813, 1.092] (assumes normal distribution)
@@ -534,7 +534,7 @@ Result "putInHashSetAndQueryTenTimes":
 # Timeout: 10 min per iteration
 # Threads: 1 thread, will synchronize iterations
 # Benchmark mode: Average time, time/op
-# Benchmark: benchmarks.TestBenchmark.putInHashSetAndQueryTenTimes
+# Benchmark: benchmarks.TestBenchmark.putInHashSetAndGetTenTimes
 # Parameters: (cachingOn = true)
 
 # Run progress: 90.00% complete, ETA 00:00:35
@@ -576,7 +576,7 @@ Iteration  29: 0.209 us/op
 Iteration  30: 0.210 us/op
 
 
-Result "putInHashSetAndQueryTenTimes":
+Result "putInHashSetAndGetTenTimes":
   0.209 ±(99.9%) 0.001 us/op [Average]
   (min, avg, max) = (0.207, 0.209, 0.210), stdev = 0.001
   CI (99.9%): [0.208, 0.209] (assumes normal distribution)
@@ -591,10 +591,10 @@ TestBenchmark.getFromSmallHashSet                 false  avgt   30  0.195 ±  0.
 TestBenchmark.getFromSmallHashSet                  true  avgt   30  0.192 ±  0.001  us/op
 TestBenchmark.putInHashSet                        false  avgt   30  0.147 ±  0.023  us/op
 TestBenchmark.putInHashSet                         true  avgt   30  0.140 ±  0.021  us/op
-TestBenchmark.putInHashSetAndQueryOnce            false  avgt   30  0.222 ±  0.035  us/op
-TestBenchmark.putInHashSetAndQueryOnce             true  avgt   30  0.147 ±  0.001  us/op
-TestBenchmark.putInHashSetAndQueryTenTimes        false  avgt   30  0.952 ±  0.140  us/op
-TestBenchmark.putInHashSetAndQueryTenTimes         true  avgt   30  0.209 ±  0.001  us/op
+TestBenchmark.putInHashSetAndGetOnce              false  avgt   30  0.222 ±  0.035  us/op
+TestBenchmark.putInHashSetAndGetOnce               true  avgt   30  0.147 ±  0.001  us/op
+TestBenchmark.putInHashSetAndGetTenTimes          false  avgt   30  0.952 ±  0.140  us/op
+TestBenchmark.putInHashSetAndGetTenTimes           true  avgt   30  0.209 ±  0.001  us/op
 
 Benchmark result is saved to build/reports/jmh/results.txt
 
