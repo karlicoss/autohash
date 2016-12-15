@@ -1,4 +1,4 @@
-package com.github.karlicoss.auto.value.android_benchmark;
+package com.github.karlicoss.auto.value.android_benchmark.hash;
 
 import android.util.Pair;
 import com.google.auto.value.AutoValue;

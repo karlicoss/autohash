@@ -1,4 +1,4 @@
 rootProject.name = 'autohash-root'
 
-include ':autohash' //,
-//        ':android-benchmark'
+include ':autohash',
+        ':android-benchmark'
