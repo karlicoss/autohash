@@ -2,7 +2,7 @@ package com.github.karlicoss.auto.value.android_benchmark.hash;
 
 import android.support.test.InstrumentationRegistry;
 import android.util.Pair;
-import dk.ilios.spanner.BeforeExperiment;
+import dk.ilios.spanner.BeforeRep;
 import dk.ilios.spanner.Benchmark;
 import dk.ilios.spanner.BenchmarkConfiguration;
 import dk.ilios.spanner.Param;
@@ -19,28 +19,24 @@ import java.util.Random;
 
 import static java.lang.String.valueOf;
 
-// TODO use black hole?
 @RunWith(SpannerRunner.class)
 public class CachedVsNotCachedBenchmark {
 
-    private File filesDir = InstrumentationRegistry.getTargetContext().getFilesDir();
-    private File resultsDir = new File(filesDir, "results");
-//    private File baseLineFile = Utils.copyFromAssets("baseline.json");
+    private static final File RESULTS_DIR = new File(InstrumentationRegistry.getTargetContext().getFilesDir(), "results");
+
+    private static final String BENCHMARK_FILENAME = CachedVsNotCachedBenchmark.class.getCanonicalName() + "_" + System.currentTimeMillis() + ".json";
 
     @BenchmarkConfiguration
     public SpannerConfig configuration = new SpannerConfig.Builder()
-            .saveResults(resultsDir, CachedVsNotCachedBenchmark.class.getCanonicalName() + ".json") // Save results to disk
-//            .useBaseline(baseLineFile) // Compare against a baseline
-            .medianFailureLimit(Float.MAX_VALUE) // Fail if difference vs. baseline is to big. Should normally be 10-15%  (0.15)
+            .saveResults(RESULTS_DIR, BENCHMARK_FILENAME) // Save results to disk
             .addInstrument(
                     new RuntimeInstrumentConfig.Builder()
-                    .measurements(100)
-                    .build()
+                            .measurements(300)
+                            .build()
             )
             .build();
-
-    // Public test parameters (value chosen and injected by Experiment)
-    @Param(value = {"true", "false"})
+    
+    @Param(value = {"false", "true",})
     public String cachingOn;
 
     static class Input {
@@ -66,7 +62,7 @@ public class CachedVsNotCachedBenchmark {
     private final List<Input> inputs;
     {
         Random random = new Random(123413);
-        int count = 1;
+        int count = 10;
         inputs = new ArrayList<>(count);
         for (int i = 0; i < count; i++) {
             inputs.add(new Input(random));
@@ -75,7 +71,7 @@ public class CachedVsNotCachedBenchmark {
 
     public List<Object> items;
 
-    @BeforeExperiment
+    @BeforeRep
     public void before() {
         boolean on = Boolean.parseBoolean(cachingOn);
         items = new ArrayList<>(inputs.size());
@@ -95,50 +91,67 @@ public class CachedVsNotCachedBenchmark {
         Results should be roughly the same, cached version will be slightly slower.
      */
     @Benchmark
-    public void combineHashCodes() {
+    public int combineHashCodes() {
+        int dummy = 0;
+
         int combined = 0;
         for (Object item : items) {
             combined ^= item.hashCode();
         }
+
+        dummy += combined;
+
+        return dummy;
     }
 
     @Benchmark
-    public void getFromSmallHashSet() {
-        HashSet<Object> set = new HashSet<>(items);
+    public boolean getFromSmallHashSet() {
+        HashSet<Object> set = new HashSet<>();
         // add few items to prevent check for empty map
         set.add(new Object());
         set.add(4);
+        set.add("tralalal");
 
-        boolean result = true;
+        boolean dummy = true;
         for (Object item: items) {
-            result &= set.contains(item);
+            dummy &= set.contains(item);
         }
+
+        return dummy;
     }
 
     @Benchmark
-    public void putInHashSet() {
+    public int putInHashSet() {
         HashSet<Object> set = new HashSet<>(items);
+
+        int dummy = set.size();
+
+        return dummy;
     }
 
     @Benchmark
-    public void putInHashSetAndQuery() {
+    public boolean putInHashSetAndGetOnce() {
         HashSet<Object> set = new HashSet<>(items);
 
-        boolean result = true;
+        boolean dummy = true;
         for (Object item: items) {
-            result &= set.contains(item);
+            dummy &= set.contains(item);
         }
+
+        return dummy;
     }
 
     @Benchmark
-    public void putInHashSetAndQueryThreeTimes() {
+    public boolean putInHashSetAndGetTenTimes() {
         HashSet<Object> set = new HashSet<>(items);
 
-        boolean result = true;
-        for (int i = 0; i < 3; i++) {
-            for (Object item: items) {
-                result &= set.contains(item);
+        boolean dummy = true;
+        for (int q = 0; q < 10; q++) {
+            for (Object item : items) {
+                dummy &= set.contains(item);
             }
         }
+
+        return dummy;
     }
 }

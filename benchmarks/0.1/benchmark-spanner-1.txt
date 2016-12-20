@@ -1,0 +1,50 @@
+I  Experiment selection:
+I    Benchmark Methods:   [combineHashCodes, getFromSmallHashSet, putInHashSet, putInHashSetAndGetOnce, putInHashSetAndGetTenTimes]
+I    Instruments:   [RuntimeInstrument]
+I    User parameters:   {}
+I    Selection type:    null
+I  This selection yields 10 experiments.
+I  Trial Report (1 of 10):
+I    Experiment {instrument=RuntimeInstrument, benchmarkMethod=combineHashCodes, parameters={cachingOn=false}}
+I    Results:
+I      runtime(ns): min=20573.00, 1st qu.=71888.25, median=118047.00 (-), mean=102183.15, 3rd qu.=123580.75, max=264792.00
+I  Trial Report (2 of 10):
+I    Experiment {instrument=RuntimeInstrument, benchmarkMethod=combineHashCodes, parameters={cachingOn=true}}
+I    Results:
+I      runtime(ns): min=18802.00, 1st qu.=119739.25, median=123125.00 (-), mean=123047.22, 3rd qu.=126653.25, max=278386.00
+I  Trial Report (3 of 10):
+I    Experiment {instrument=RuntimeInstrument, benchmarkMethod=getFromSmallHashSet, parameters={cachingOn=false}}
+I    Results:
+I      runtime(ns): min=85469.00, 1st qu.=164284.00, median=192292.00 (-), mean=203028.47, 3rd qu.=207226.00, max=1193437.00
+I  Trial Report (4 of 10):
+I    Experiment {instrument=RuntimeInstrument, benchmarkMethod=getFromSmallHashSet, parameters={cachingOn=true}}
+I    Results:
+I      runtime(ns): min=64479.00, 1st qu.=193815.00, median=202161.50 (-), mean=205173.97, 3rd qu.=216576.00, max=1213385.00
+I  Trial Report (5 of 10):
+I    Experiment {instrument=RuntimeInstrument, benchmarkMethod=putInHashSet, parameters={cachingOn=false}}
+I    Results:
+I      runtime(ns): min=64739.00, 1st qu.=166797.00, median=174505.00 (-), mean=174710.40, 3rd qu.=186210.75, max=352292.00
+I  Trial Report (6 of 10):
+I    Experiment {instrument=RuntimeInstrument, benchmarkMethod=putInHashSet, parameters={cachingOn=true}}
+I    Results:
+I      runtime(ns): min=61198.00, 1st qu.=149636.00, median=163046.50 (-), mean=163324.18, 3rd qu.=173242.00, max=335313.00
+I  Trial Report (7 of 10):
+I    Experiment {instrument=RuntimeInstrument, benchmarkMethod=putInHashSetAndGetOnce, parameters={cachingOn=false}}
+I    Results:
+I      runtime(ns): min=37553.00, 1st qu.=163229.00, median=167969.00 (-), mean=172181.58, 3rd qu.=179675.00, max=474115.00
+I  Trial Report (8 of 10):
+I    Experiment {instrument=RuntimeInstrument, benchmarkMethod=putInHashSetAndGetOnce, parameters={cachingOn=true}}
+I    Results:
+I      runtime(ns): min=55104.00, 1st qu.=176914.25, median=190547.00 (-), mean=187500.89, 3rd qu.=205768.75, max=888334.00
+I  Trial Report (9 of 10):
+I    Experiment {instrument=RuntimeInstrument, benchmarkMethod=putInHashSetAndGetTenTimes, parameters={cachingOn=false}}
+I    Results:
+I      runtime(ns): min=116042.00, 1st qu.=310273.00, median=319193.00 (-), mean=311776.21, 3rd qu.=324726.25, max=489479.00
+I  Trial Report (10 of 10):
+I    Experiment {instrument=RuntimeInstrument, benchmarkMethod=putInHashSetAndGetTenTimes, parameters={cachingOn=true}}
+I    Results:
+I      runtime(ns): min=89271.00, 1st qu.=236302.00, median=243698.00 (-), mean=248912.01, 3rd qu.=271068.00, max=363594.00
+I  Collected 3000 measurements from:
+I    1 instrument(s)
+I    10 benchmark(s)
+I  Execution complete: 7.856 min.
