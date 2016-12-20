@@ -1,0 +1,2 @@
+Nexus 6p
+CPU: Octa-core (4x1.55 GHz Cortex-A53 & 4x2.0 GHz Cortex-A57)

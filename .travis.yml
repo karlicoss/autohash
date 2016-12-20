@@ -17,5 +17,9 @@ cache:
     - $HOME/.gradle/wrapper/
 
 
+# prevent travis from running gradle assemble
+install: true
+
 script:
-  - ./gradlew autohash:check
+  - ./gradlew --configure-on-demand autohash:assemble
+  - ./gradlew --configure-on-demand autohash:check
