@@ -5,6 +5,40 @@ their `hashCode` result in a thread safe and efficient manner.
 
 The implementation is similar to `java.lang.String::hashCode`.
 
+# Usage
+First, beware that you should only use this if you know that your objects are logically immutable
+ (e.g. `ArrayList` is totally mutable, but for your specific object you might have the contract of immutability).
+ If immutability is the case though, just add the `@AutoHash` annotation to your value class definition. It's that simple!
+
+```java
+@AutoHash
+@AutoValue
+abstract class Person {
+    abstract String name();
+    abstract String passportNumber();
+    abstract List<Integer> genes();
+}
+```
+
+, and that's it! Now if you call `hashCode` on a `Person` multiple times, it will only be computed once
+(in worst case, once for each thread which uses your object).
+
+# Download
+
+For regular Java Maven/Gradle project, you just need the dependency `com.github.karlicoss.auto.value:autohash:<version>`
+ in `provided` configuration.
+
+For Android, you're gonna need the [android-apt](https://bitbucket.org/hvisser/android-apt) plugin. 
+You need a dependency in `provided` and `apt` configurations:
+
+```groovy
+dependencies {
+    def autoHashVersion = 'com.github.karlicoss.auto.value:autohash:<version>'
+    provided autoHashVersion
+    apt autoHashVersion
+}
+```
+
 # Benchmarks
 
 See detailed benchmark reports in `benchmarks` directory.
@@ -172,3 +206,19 @@ To take a closer look, I ran same benchmark, but with 10 objects being cached in
 Here, the difference between cached and non cached versions is more noticable: you can see improvement for `putInHashSetAndGetOnce` and `putInHashSetAndGetTenTimes`.
 
 Anyway, the Android benchmark was way harder to conduct, and I wouldn't call it very reliable since the benchmarking tool is not as advanced as JMH. Although you can notice the general trend.
+
+
+# License
+
+    Copyright 2016 Dmitrii Gerasimov.
+    
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+    
+       http://www.apache.org/licenses/LICENSE-2.0
+    
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
