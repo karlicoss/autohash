@@ -1,7 +1,11 @@
-[![Build Status](https://travis-ci.org/karlicoss/autohash.svg?branch=master)](https://travis-ci.org/karlicoss/autohash)
+[![Build Status](https://travis-ci.org/karlicoss/autohash.svg?branch=master)](https://travis-ci.org/karlicoss/autohash)  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.karlicoss.auto.value/autohash/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.karlicoss.auto.value/autohash)
 
-Cache your hash! Autohash is an [AutoValue](https://github.com/google/auto/tree/master/value) extension which makes your immutable value classes cache
-their `hashCode` result in a thread safe and efficient manner.
+TLDR: cache your hash!
+
+Imagine you've got an immutable [AutoValue](https://github.com/google/auto/tree/master/value) entity. AutoValue generates `hashCode` for us, but if you pass your immutable
+object around in your code, each time `hashCode` is called, it will be recomputed. Sounds like a waste of precious CPU given that the object is immutable, right?
+
+AutoHash is an extension which makes your immutable value classes cache their `hashCode` result in a thread safe and efficient manner.
 
 The implementation is similar to `java.lang.String::hashCode`.
 
@@ -24,6 +28,8 @@ abstract class Person {
 (in worst case, once for each thread which uses your object).
 
 # Download
+
+The library is published on Maven Central/JCenter.
 
 For regular Java Maven/Gradle project, you just need the dependency `com.github.karlicoss.auto.value:autohash:<version>`
  in `provided` configuration.
