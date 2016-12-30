@@ -12,11 +12,10 @@ final class AutoValue_Annotated extends $AutoValue_Annotated {
 
     @Override
     public int hashCode() {
-        int hash = hashCode;
-        if (hash == 0) {
-            hash = super.hashCode();
-            hashCode = hash;
+        if (hashCode == 0) {
+            int hash = super.hashCode();
+            hashCode = hash != 0 ? hash : 0xDEADBEEF;
         }
-        return hash;
+        return hashCode;
     }
 }
