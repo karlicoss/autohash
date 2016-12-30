@@ -14,7 +14,8 @@ final class AutoValue_Annotated extends $AutoValue_Annotated {
     public int hashCode() {
         int hash = hashCode;
         if (hash == 0) {
-            hash = super.hashCode();
+            int zeroable = super.hashCode();
+            hash = zeroable != 0 ? zeroable : 0xDEADBEEF;
             hashCode = hash;
         }
         return hash;

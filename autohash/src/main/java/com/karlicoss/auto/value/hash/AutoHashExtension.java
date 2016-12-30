@@ -45,7 +45,7 @@ public class AutoHashExtension extends AutoValueExtension {
         return JavaFile.builder(context.packageName(), subclass.build()).build().toString();
     }
 
-    
+
     MethodSpec generateHashCode() {
         MethodSpec.Builder hashCodeMethod = MethodSpec.methodBuilder("hashCode")
                 .addAnnotation(Override.class)
@@ -53,15 +53,19 @@ public class AutoHashExtension extends AutoValueExtension {
                 .returns(INT);
 
         hashCodeMethod.addStatement("int hash = hashCode");
+
         hashCodeMethod.beginControlFlow("if (hash == 0) ");
-        hashCodeMethod.addStatement("hash = super.hashCode()");
+        hashCodeMethod.addStatement("int zeroable = super.hashCode()");
+        hashCodeMethod.addStatement("hash = zeroable != 0 ? zeroable : 0xDEADBEEF");
         hashCodeMethod.addStatement("hashCode = hash");
         hashCodeMethod.endControlFlow();
+
         hashCodeMethod.addStatement("return hash");
+
         return hashCodeMethod.build();
     }
 
-    
+
     private static MethodSpec generateSuperCallConstructor( Map<String, ExecutableElement> properties) {
         List<ParameterSpec> params = new ArrayList<>();
         for (Map.Entry<String, ExecutableElement> entry : properties.entrySet()) {
