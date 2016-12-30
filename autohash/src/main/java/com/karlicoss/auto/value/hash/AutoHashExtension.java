@@ -52,12 +52,15 @@ public class AutoHashExtension extends AutoValueExtension {
                 .addModifiers(PUBLIC)
                 .returns(INT);
 
-        hashCodeMethod.beginControlFlow("if (hashCode == 0) ");
-        hashCodeMethod.addStatement("int hash = super.hashCode()");
-        hashCodeMethod.addStatement("hashCode = hash != 0 ? hash : 0xDEADBEEF");
+        hashCodeMethod.addStatement("int hash = hashCode");
+
+        hashCodeMethod.beginControlFlow("if (hash == 0) ");
+        hashCodeMethod.addStatement("int zeroable = super.hashCode()");
+        hashCodeMethod.addStatement("hash = zeroable != 0 ? zeroable : 0xDEADBEEF");
+        hashCodeMethod.addStatement("hashCode = hash");
         hashCodeMethod.endControlFlow();
 
-        hashCodeMethod.addStatement("return hashCode");
+        hashCodeMethod.addStatement("return hash");
 
         return hashCodeMethod.build();
     }
